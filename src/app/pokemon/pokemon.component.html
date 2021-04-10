@@ -1,6 +1,12 @@
-<div class="row" infiniteScroll [infiniteScrollDistance]="2"  (scrolled)="onScroll()">
-  <div class="col-8 my-4 d-flex justify-content-center">
-    <form class="form-inline">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#">Pokemon APP</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <form class="form-inline mr-auto">
       <label class="my-1 mr-2" for="typeFilter">Types</label>
       <select [(ngModel)]="selectedType" name="types" class="custom-select my-1 mr-sm-2" id="typeFilter" (change)="filterType($event)">
         <option selected>Choose...</option>
@@ -13,9 +19,13 @@
         <option *ngFor="let a of abilities" value="{{ a.name }}">{{a.name}}</option>
       </select>
 
-      <button type="submit" class="btn btn-primary mb-2" (click)="clear()">Clear</button>
+      <button type="submit" class="btn btn-primary" (click)="clear()">Clear</button>
     </form>
   </div>
+
+</nav>
+
+<div style="margin-top: 120px;" class="row" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
   <div class="col-8">
     <table class="table table-hover">
       <thead class="thead-dark">
@@ -48,9 +58,10 @@
       </tbody>
     </table>
   </div>
-
   <div class="col-4">
-    <app-pokemon-detail [selectedPokemon]="selectedPokemon"></app-pokemon-detail>
+    <div class="sticky-top">
+      <app-pokemon-detail [selectedPokemon]="selectedPokemon"></app-pokemon-detail>
+    </div>
   </div>
 </div>
 

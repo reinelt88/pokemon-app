@@ -14,9 +14,8 @@
     <img src="{{selectedPokemon.sprites.front_shiny}}" alt="{{selectedPokemon.name}}">
   </a>
   <a href="#" class="list-group-item list-group-item-action"><strong>Base experience:</strong> {{ selectedPokemon.base_experience }}</a>
-  <a href="#" class="list-group-item list-group-item-action"><strong>Height:</strong> {{ selectedPokemon.height }}</a>
-  <a href="#" class="list-group-item list-group-item-action"><strong>Is default?:</strong> {{ selectedPokemon.is_default }}</a>
-  <a href="#" class="list-group-item list-group-item-action"><strong>Weight:</strong> {{ selectedPokemon.weight }}</a>
+  <a href="#" class="list-group-item list-group-item-action"><strong>Height:</strong> {{ selectedPokemon.height }} - <strong>Weight:</strong> {{ selectedPokemon.weight }}</a>
+<!--  <a href="#" class="list-group-item list-group-item-action"><strong>Weight:</strong> {{ selectedPokemon.weight }}</a>-->
   <a href="#" class="list-group-item list-group-item-action"><strong>Abilities: </strong>
     <span *ngFor="let a of selectedPokemon.abilities" class="badge badge-primary mr-1">{{a.ability.name}}</span>
   </a>
