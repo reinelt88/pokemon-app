@@ -28,6 +28,7 @@
     "ng-select2-component": "^7.2.3",
     "ngx-infinite-scroll": "^10.0.1",
     "ngx-spinner": "^11.0.1",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "select2": "*",
     "tslib": "^2.0.0",
