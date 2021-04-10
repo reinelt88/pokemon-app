@@ -50,42 +50,7 @@
   </div>
 
   <div class="col-4">
-
-    <div class="list-group" *ngIf="!selectedPokemon">
-      <a href="#" class="list-group-item list-group-item-action active">
-        Select Pokemon for more information
-      </a>
-    </div>
-
-    <div class="list-group" *ngIf="selectedPokemon">
-      <a href="#" class="list-group-item list-group-item-action active">
-        #{{ selectedPokemon.id }} {{ selectedPokemon.name | uppercase }}
-      </a>
-      <a href="#" class="list-group-item list-group-item-action">
-        <img src="{{selectedPokemon.sprites.front_default}}" alt="{{selectedPokemon.name}}">
-        <img src="{{selectedPokemon.sprites.back_default}}" alt="{{selectedPokemon.name}}">
-        <img src="{{selectedPokemon.sprites.front_shiny}}" alt="{{selectedPokemon.name}}">
-      </a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>Base experience:</strong> {{ selectedPokemon.base_experience }}</a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>Height:</strong> {{ selectedPokemon.height }}</a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>Is default?:</strong> {{ selectedPokemon.is_default }}</a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>Weight:</strong> {{ selectedPokemon.weight }}</a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>Abilities: </strong>
-        <span *ngFor="let a of selectedPokemon.abilities" class="badge badge-primary mr-1">{{a.ability.name}}</span>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>Forms: </strong>
-        <span *ngFor="let f of selectedPokemon.forms" class="badge badge-secondary mr-1">{{f.name}}</span>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>Types: </strong>
-        <span *ngFor="let t of selectedPokemon.types" class="badge badge-success mr-1">{{t.type.name}}</span>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>Moves: </strong>
-        <span *ngFor="let m of selectedPokemon.moves" class="badge badge-warning mr-1">{{m.move.name}}</span>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action"><strong>States: </strong>
-        <span *ngFor="let m of selectedPokemon.stats" class="badge badge-info mr-1">{{m.stat.name}}</span>
-      </a>
-    </div>
+    <app-pokemon-detail [selectedPokemon]="selectedPokemon"></app-pokemon-detail>
   </div>
 </div>
 
