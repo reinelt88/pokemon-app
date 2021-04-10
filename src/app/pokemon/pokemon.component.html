@@ -1,8 +1,62 @@
-<p>pokemon works!</p>
-<table class="table">
-  <tr>
-    <td>a</td>
-    <td>a</td>
-    <td>a</td>
-  </tr>
-</table>
+<div class="row" infiniteScroll [infiniteScrollDistance]="2"  (scrolled)="onScroll()">
+  <div class="col-8">
+    <form class="form-inline">
+      <label class="my-1 mr-2" for="typeFilter">Types</label>
+      <select [(ngModel)]="selectedType" name="types" class="custom-select my-1 mr-sm-2" id="typeFilter" (change)="filterType($event)">
+        <option selected>Choose...</option>
+        <option *ngFor="let a of types" value="{{ a.name }}">{{a.name}}</option>
+      </select>
+
+      <label class="my-1 mr-2" for="abilityFilter">Abilities</label>
+      <select [(ngModel)]="selectedAbility" name="abilities" class="custom-select my-1 mr-sm-2" id="abilityFilter" (change)="filterAbility($event)">
+        <option selected>Choose...</option>
+        <option *ngFor="let a of abilities" value="{{ a.name }}">{{a.name}}</option>
+      </select>
+
+      <button type="submit" class="btn btn-primary mb-2" (click)="clear()">Clear</button>
+    </form>
+
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Specie</th>
+        <th scope="col">Abilities</th>
+        <th scope="col">Forms</th>
+        <th scope="col">Types</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let p of list" (click)="showInfo(p.id)">
+        <th scope="row">{{p.id}}</th>
+        <td>{{p.name}}</td>
+        <td>{{p.species.name}}</td>
+        <td>
+          <span *ngFor="let a of p.abilities" class="badge badge-primary mr-1">{{a.ability.name}}</span>
+        </td>
+        <td>
+          <span *ngFor="let f of p.forms" class="badge badge-secondary mr-1">{{f.name}}</span>
+        </td>
+        <td>
+          <span *ngFor="let t of p.types" class="badge badge-success mr-1">{{t.type.name}}</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4" *ngIf="selectedPokemon">
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action active">
+        More Information of {{ selectedPokemon.name }}
+      </a>
+      <a href="#" class="list-group-item list-group-item-action"><strong>Base experience:</strong> {{ selectedPokemon.base_experience }}</a>
+      <a href="#" class="list-group-item list-group-item-action"><strong>Height:</strong> {{ selectedPokemon.height }}</a>
+      <a href="#" class="list-group-item list-group-item-action"><strong>Is default?:</strong> {{ selectedPokemon.is_default }}</a>
+      <a href="#" class="list-group-item list-group-item-action"><strong>Weight:</strong> {{ selectedPokemon.weight }}</a>
+    </div>
+  </div>
+</div>
+
+
+<!--<ngx-spinner></ngx-spinner>-->

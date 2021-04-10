@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class PokemonService {
 
-  private endpoint = 'https://pokeapi.co/api/v2/';  // URL to web api
+  private endpoint = 'https://pokeapi.co/api/v2';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,21 +16,31 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(): Observable<any> {
-    return this.http.get<any[]>(this.endpoint + 'pokemon?limit=100&offset=200')
+  getPokemons(limit: number =  20, offset: number = 0): Observable<any> {
+    console.log(`${this.endpoint}/pokemon?limit=${limit}&offset=${offset}`);
+    return this.http.get<any[]>(`${this.endpoint}/pokemon?limit=${limit}&offset=${offset}`)
       .pipe(
         catchError(this.handleError<any[]>('getPokemons', []))
       );
   }
 
-  // /** GET hero by id. Will 404 if id not found */
-  // getHero(id: number): Observable<Hero> {
-  //   const url = `${this.heroesUrl}/${id}`;
-  //   return this.http.get<Hero>(url).pipe(
-  //     tap(_ => this.log(`fetched hero id=${id}`)),
-  //     catchError(this.handleError<Hero>(`getHero id=${id}`))
-  //   );
-  // }
+  getPokemonByName(name: string): Observable<any> {
+    return this.http.get<any>(`${this.endpoint}/pokemon/${name}`).pipe(
+      catchError(this.handleError<any>(`getPokemon name=${name}`))
+    );
+  }
+
+  getTypes(): Observable<any> {
+    return this.http.get<any>(`${this.endpoint}/type`).pipe(
+      catchError(this.handleError<any>(`getTypes`))
+    );
+  }
+
+  getAbilities(): Observable<any> {
+    return this.http.get<any>(`${this.endpoint}/ability?limit=327`).pipe(
+      catchError(this.handleError<any>(`getAbilities`))
+    );
+  }
 
   /**
    * Handle Http operation that failed.
