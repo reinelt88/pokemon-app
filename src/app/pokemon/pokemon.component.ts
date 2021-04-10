@@ -59,7 +59,7 @@ export class PokemonComponent implements OnInit {
   }
 
   showInfo = (id: number) => {
-    this.selectedPokemon = this.list.find(index => index.id > id);
+    this.selectedPokemon = this.list.find(index => index.id === id);
     console.log(this.selectedPokemon);
   }
 
