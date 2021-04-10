@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +22,7 @@
     "@angular/router": "~11.2.7",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "bootstrap": "^4.6.0",
+    "express": "^4.17.1",
     "jquery": "^3.6.0",
     "ng-select2-component": "^7.2.3",
     "ngx-infinite-scroll": "^10.0.1",
